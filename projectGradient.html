@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Color Gradient Project</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-image: linear-gradient(to right top, 
+            #f8f9fa, 
+            #e9ecef,
+            #53958a,
+            #53453d);
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #333;
+        }
+
+        section {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 90%;
+            max-width: 500px;
+        }
+
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            font-weight: 600;
+            color: #495057;
+        }
+
+        #div1 {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        button {
+            border: none;
+            border-radius: 50%;
+            width: 70px;
+            height: 70px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        #myButton {
+            background: linear-gradient(to right, blueviolet, violet);
+            box-shadow: 0 4px 6px rgba(138, 43, 226, 0.4);
+        }
+
+        #myButton:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 12px rgba(138, 43, 226, 0.6);
+        }
+
+        #myButton2 {
+            background: linear-gradient(to right, rgb(43, 226, 116), rgb(10, 180, 80));
+            box-shadow: 0 4px 6px rgba(43, 226, 116, 0.4);
+        }
+
+        #myButton2:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 12px rgba(43, 226, 116, 0.6);
+        }
+
+        .gradient-preview {
+            height: 150px;
+            border-radius: 10px;
+            background: linear-gradient(to right, rgb(92, 145, 229), rgb(152, 63, 198));
+            margin: 20px auto;
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        h2 {
+            margin-top: 20px;
+            font-size: 1rem;
+            font-weight: 400;
+        }
+
+        .copyCode {
+            padding: 15px;
+            border-radius: 8px;
+            background: #f8f9fa;
+            border: 1px dashed #adb5bd;
+            margin: 10px auto;
+            display: inline-block;
+            font-family: monospace;
+            font-size: 1rem;
+            color: #495057;
+        }
+
+        .copyCode:hover {
+            border-color: #6c757d;
+            background: #e9ecef;
+        }
+
+        @media (max-width: 480px) {
+            button {
+                width: 50px;
+                height: 50px;
+            }
+
+            h1 {
+                font-size: 1.5rem;
+            }
+
+            .gradient-preview {
+                height: 120px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <section>
+        <h1>Color Gradient Generator</h1>
+        <div id="div1">
+            <button id="myButton">Click here</button>
+            <button id="myButton2">Click here</button>
+        </div>
+        <div class="gradient-preview"></div>
+        <h2>Click below to copy the code</h2>
+        <div class="copyCode">
+            background-image: linear-gradient(to right, rgb(92, 145, 229), rgb(152, 63, 198));
+        </div>
+    </section>
+    <script> 
+        let btn1 = document.getElementById("myButton"); 
+        let btn2 = document.getElementById("myButton2");
+        let copyDiv = document.querySelector(".copyCode");  // Fixed class name
+
+        // Function to generate a random hex color
+        const hexValues = () => {
+            let colors = "#";
+            let myhexValues = "0123456789abcdef";
+            for (let i = 0; i < 6; i++) {
+                colors += myhexValues[Math.floor(Math.random() * 16)];
+            }
+            return colors;
+        };
+        let color1='#a04e80';
+        let color2='#a04e85';
+
+        btn1.innerHTML=color1;
+        btn2.innerHTML=color2;
+        // Handle button 1 click
+        const handleButton1 = () => {
+            let rgb1 = hexValues();
+            console.log(rgb1);  // Log the color to the console
+            document.body.style.backgroundImage = `linear-gradient(to right, ${rgb1}, #e9ecef)`; // Add a second color for gradient
+            copyDiv.innerHTML = `background-image: linear-gradient(to right, ${rgb1}, #453637)`;  // Update the copy code
+            color1=rgb1;
+            btn1.innerHTML=color1;
+        };
+
+        // Handle button 2 click
+        const handleButton2 = () => {
+            let rgb2 = hexValues();
+            console.log(rgb2);  // Log the color to the console
+            document.body.style.backgroundImage = `linear-gradient(to right, ${rgb2}, #e45cef)`; // Add a second color for gradient
+            copyDiv.innerHTML = `background-image: linear-gradient(to right, #453637,${rgb2})`;  // Update the copy code
+            color2=rgb2;
+            btn2.innerHTML=color2;
+        };
+        
+        copyDiv.addEventListener('click',()=>{
+            navigator.clipboard.writeText(copyDiv.innerText);
+            alert("the content is copied")
+        })
+
+        // Event listeners for the buttons
+        btn1.addEventListener('click', handleButton1);
+        btn2.addEventListener('click', handleButton2);
+    </script>
+</body>
+</html>
